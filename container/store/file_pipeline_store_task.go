@@ -30,6 +30,7 @@ import (
 
 const (
 	PipelineFile           = "pipeline.json"
+	PipelineYmlFile        = "pipeline.yml"
 	PipelineInfoFile       = "info.json"
 	PipelinesFolder        = "/data/pipelines/"
 	PipelinesRunInfoFolder = "/data/runInfo/"
@@ -225,27 +226,44 @@ func (store *FilePipelineStoreTask) Save(
 
 func (store *FilePipelineStoreTask) LoadPipelineConfig(pipelineId string) (common.PipelineConfiguration, error) {
 	pipelineConfiguration := common.PipelineConfiguration{}
-	file, err := os.Open(store.getPipelineFile(pipelineId))
-	if err != nil {
-		return pipelineConfiguration, err
-	}
 
-	defer util.CloseFile(file)
+	// 기본적으로 yml 파일을 읽는다.
+	if _, err := os.Stat(store.getPipelineYmlFile(pipelineId)); err == nil {
+		log.Info("load pipeline config from yml file")
+		file, err := os.Open(store.getPipelineYmlFile(pipelineId))
+		if err != nil {
+			return pipelineConfiguration, err
+		}
+		defer util.CloseFile(file)
 
-	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&pipelineConfiguration)
-	if err != nil {
-		return pipelineConfiguration, err
+		configFactory := YamlFileBasedPipelineConfigFactory{file: file}
+		err = configFactory.CreatePipelineConfiguration(&pipelineConfiguration)
+
+		if err != nil {
+			return pipelineConfiguration, err
+		}
+	} else {
+		// yml 파일이 없으면 json 으로 읽는다.(Edge 호환성 유지)
+		file, err := os.Open(store.getPipelineFile(pipelineId))
+		if err != nil {
+			return pipelineConfiguration, err
+		}
+		defer util.CloseFile(file)
+		decoder := json.NewDecoder(file)
+		err = decoder.Decode(&pipelineConfiguration)
+		if err != nil {
+			return pipelineConfiguration, err
+		}
 	}
 
 	if pipelineConfiguration.PipelineId == "" {
-		err = errors.New("InValid pipeline configuration")
+		return pipelineConfiguration, errors.New("InValid pipeline configuration")
 	}
 
 	// Process fragment stages
 	pipelineConfiguration.ProcessFragmentStages()
 
-	return pipelineConfiguration, err
+	return pipelineConfiguration, nil
 }
 
 func (store *FilePipelineStoreTask) Delete(pipelineId string) error {
@@ -275,6 +293,10 @@ func (store *FilePipelineStoreTask) hasPipeline(pipelineId string) bool {
 
 func (store *FilePipelineStoreTask) getPipelineFile(pipelineId string) string {
 	return store.getPipelineDir(pipelineId) + PipelineFile
+}
+
+func (store *FilePipelineStoreTask) getPipelineYmlFile(pipelineId string) string {
+	return store.getPipelineDir(pipelineId) + PipelineYmlFile
 }
 
 func (store *FilePipelineStoreTask) getPipelineInfoFile(pipelineId string) string {

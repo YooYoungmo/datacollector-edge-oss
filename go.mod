@@ -20,8 +20,10 @@ require (
 	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/sirupsen/logrus v1.1.1
 	github.com/spf13/cast v1.2.0
+	github.com/stretchr/testify v1.8.4
 	github.com/xinsnake/go-http-digest-auth-client v0.4.0
 	golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -37,7 +39,7 @@ require (
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v0.0.0-20180402223658-b729f2633dfe // indirect
 	github.com/pierrec/lz4 v2.0.5+incompatible // indirect
-	github.com/stretchr/testify v1.7.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect

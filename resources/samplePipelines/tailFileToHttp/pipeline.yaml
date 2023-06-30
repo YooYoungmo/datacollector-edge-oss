@@ -1,0 +1,17 @@
+id: tailFileToHttp
+
+# TODO : stages 구분 origin, processor, destination
+stages:
+  - instanceName: FileTail_01
+    stageName: FileTail
+    configuration:
+      # TODO: file pattern(와일드 카드, 디렉토리 지정)
+      filePath: /Users/yooyoungmo/Downloads/test.log
+  - instanceName: Trash_01
+    stageName: Trash
+    configuration:
+      type: NULL # ERROR, NULL, STATS_NULL, STATS_DPM_DIRECTLY
+  - instanceName: HttpClient_01
+    stageName: HttpClient
+    configuration:
+      httpUrl: http://localhost:9999
