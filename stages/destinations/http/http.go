@@ -166,3 +166,374 @@ func (h *HttpClientDestination) sendToSDC(jsonValue []byte) error {
 
 	return nil
 }
+
+func GetDefaultStageConfigs() []common.Config {
+	return []common.Config{
+		{
+			Name:  "conf.dataGeneratorFormatConfig.charset",
+			Value: "UTF-8",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvFileFormat",
+			Value: "CSV",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvHeader",
+			Value: "NO_HEADER",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvReplaceNewLines",
+			Value: true,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+			Value: " ",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvCustomDelimiter",
+			Value: "|",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvCustomEscape",
+			Value: "\\",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.csvCustomQuote",
+			Value: "\"",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.jsonMode",
+			Value: "MULTIPLE_OBJECTS",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.textFieldPath",
+			Value: "/text",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.textRecordSeparator",
+			Value: "\\n",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.textFieldMissingAction",
+			Value: "ERROR",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.textEmptyLineIfNull",
+			Value: false,
+		},
+
+		{
+			Name:  "conf.dataFormat",
+			Value: "TEXT",
+		},
+		{
+			Name:  "conf.resourceUrl",
+			Value: "",
+		},
+		{
+			Name: "conf.headers",
+			Value: []any{
+				map[string]any{
+					"key":   "X-SDC-APPLICATION-ID",
+					"value": "1234", // Hostname 을 가져와서 찍자.
+				},
+			},
+		},
+		{
+			Name:  "conf.httpMethod",
+			Value: "POST",
+		},
+		{
+			Name:  "conf.client.httpCompression",
+			Value: "NONE",
+		},
+		{
+			Name:  "conf.client.connectTimeoutMillis",
+			Value: 0,
+		},
+		{
+			Name:  "conf.client.readTimeoutMillis",
+			Value: 0,
+		},
+		{
+			Name:  "conf.client.numThreads",
+			Value: 1,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.avroSchemaSource",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.avroSchema",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.registerSchema",
+			Value: false,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.schemaRegistryUrls",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.schemaLookupMode",
+			Value: "SUBJECT",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.subject",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.subjectToRegister",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.schemaId",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.includeSchema",
+			Value: true,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.avroCompression",
+			Value: "NULL",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.binaryFieldPath",
+			Value: "/",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.protoDescriptorFile",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.messageType",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.fileNameEL",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.wholeFileExistsAction",
+			Value: "TO_ERROR",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+			Value: nil,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.checksumAlgorithm",
+			Value: "MD5",
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.xmlPrettyPrint",
+			Value: true,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.xmlValidateSchema",
+			Value: false,
+		},
+		{
+			Name:  "conf.dataGeneratorFormatConfig.xmlSchema",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.authType",
+			Value: "NONE",
+		},
+		{
+			Name:  "conf.client.useOAuth2",
+			Value: false,
+		},
+		{
+			Name:  "conf.client.oauth.consumerKey",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth.consumerSecret",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth.token",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth.tokenSecret",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.credentialsGrantType",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.tokenUrl",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.clientId",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.clientSecret",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.username",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.password",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.resourceOwnerClientId",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.resourceOwnerClientSecret",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.algorithm",
+			Value: "NONE",
+		},
+		{
+			Name:  "conf.client.oauth2.key",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.jwtClaims",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.oauth2.transferEncoding",
+			Value: "BUFFERED",
+		},
+		{
+			Name:  "conf.client.oauth2.additionalValues",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.client.basicAuth.username",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.basicAuth.password",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.useProxy",
+			Value: false,
+		},
+		{
+			Name:  "conf.client.proxy.uri",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.proxy.username",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.proxy.password",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.tlsConfig.tlsEnabled",
+			Value: false,
+		},
+		{
+			Name:  "conf.client.tlsConfig.keyStoreFilePath",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.tlsConfig.keyStoreType",
+			Value: "JKS",
+		},
+		{
+			Name:  "conf.client.tlsConfig.keyStorePassword",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.tlsConfig.keyStoreAlgorithm",
+			Value: "SunX509",
+		},
+		{
+			Name:  "conf.client.tlsConfig.trustStoreFilePath",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.tlsConfig.trustStoreType",
+			Value: "JKS",
+		},
+		{
+			Name:  "conf.client.tlsConfig.trustStorePassword",
+			Value: nil,
+		},
+		{
+			Name:  "conf.client.tlsConfig.trustStoreAlgorithm",
+			Value: "SunX509",
+		},
+		{
+			Name:  "conf.client.tlsConfig.useDefaultProtocols",
+			Value: true,
+		},
+		{
+			Name:  "conf.client.tlsConfig.protocols",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.client.tlsConfig.useDefaultCiperSuites",
+			Value: true,
+		},
+		{
+			Name:  "conf.client.tlsConfig.cipherSuites",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.singleRequestPerBatch",
+			Value: true,
+		},
+		{
+			Name:  "conf.rateLimit",
+			Value: 0,
+		},
+		{
+			Name:  "conf.maxRequestCompletionSecs",
+			Value: 60,
+		},
+		{
+			Name:  "stageOnRecordError",
+			Value: "TO_ERROR",
+		},
+		{
+			Name:  "stageRequiredFields",
+			Value: []any{},
+		},
+		{
+			Name:  "stageRecordPreconditions",
+			Value: []any{},
+		},
+		{
+			Name:  "conf.client.requestLoggingConfig.enableRequestLogging",
+			Value: false,
+		},
+		{
+			Name:  "conf.client.requestLoggingConfig.logLevel",
+			Value: "FINE",
+		},
+		{
+			Name:  "conf.client.requestLoggingConfig.verbosity",
+			Value: "HEADERS_ONLY",
+		},
+		{
+			Name:  "conf.client.requestLoggingConfig.maxEntitySize",
+			Value: 0,
+		},
+	}
+}
